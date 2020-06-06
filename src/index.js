@@ -1,8 +1,8 @@
 const express = require("express");
-const path = requiere('path');
-const exphbs = requiere('express-handlebars');
-const methodOverride = requiere('method-override');
-const session = requiere('express-session');
+const path = require('path');
+const exphbs = require('express-handlebars');
+const method = require('method-override');
+const session = require('express-session');
 
 // Initiliazations
 const app = express();
@@ -20,7 +20,7 @@ app.set('view engine', '.hbs');
 
 //Middlewares
 app.use(express.urlencoded({extended: false}));
-app.use(methodOverride('_method'));
+app.use(method('_method'));
 app.use(session({
     secret: 'mysecretapp',
     resave: true,
@@ -31,6 +31,9 @@ app.use(session({
 // Global Variables
 
 // Routes
+app.use(require('./routes/index'));
+app.use(require('./routes/notes'));
+app.use(require('./routes/users'));
 
 // Static Files
 
